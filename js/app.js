@@ -85,4 +85,4 @@ document.addEventListener('keydown' , EscBtn)
 SearchBtn.addEventListener('click' , Search)
 SearchInput.addEventListener('keydown', function(event){
   if (event.key === 'Enter') Search()
-})
+});
