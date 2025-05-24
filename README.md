@@ -1,8 +1,10 @@
-# 📝 ErfanNote App
+# 📝 Note App - Todo List
 
 **ErfanNote** is a simple, responsive, and user-friendly web-based note-taking application built using **HTML**, **CSS**, and **Vanilla JavaScript**. It allows users to create, delete, search, and color-code their personal notes — all in Persian (Farsi) language and right-to-left layout.
 
 ## 🌐 Demo
+
+> You can click this link: [NoteApp](https://erfan-ne.github.io/NoteApp)
 
 > You can view the live project by opening `index.html` in your browser.
 
