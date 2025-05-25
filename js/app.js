@@ -45,8 +45,9 @@ function AddNote(){
     alert("فکر کنم یادت رفت یادداشت خودت رو بنویسی ;)")
   } else {
     const NewNote = {
-      id: Math.floor(Math.random() * 1000),
-      title: NoteTxt.value
+      id: Date.now(),
+      title: NoteTxt.value,
+      color: MainColor || "#0891b2"
     }
     NotesList.push(NewNote)
     SendToLocal()
@@ -62,7 +63,7 @@ function ShowNotes(){
     NotesList.forEach(function(note){
       NoteSection.insertAdjacentHTML("beforeend" , 
       `
-      <article class="note" id="${note.id}">
+      <article class="note" style="background-color:${note.color} " id="${note.id}">
         <p class="note-content">${note.title}</p>
         <div>
           <button class="fa-solid fa-trash delete" onclick="deleteNote(${note.id})"></button>
@@ -89,30 +90,6 @@ function ShowNotes(){
     SendToLocal();
     
   }
-
-
-  // const ArticleElem = document.createElement("article")
-  // ArticleElem.className = "note"
-  // ArticleElem.style.backgroundColor = MainColor
-  // NoteSection.append(ArticleElem)
-
-  // const NoteTxtElem = document.createElement("p")
-  // NoteTxtElem.className = "note-content"
-  // NoteTxtElem.textContent = NoteTxt.value
-  // ArticleElem.append(NoteTxtElem)
-
-  // const RemoveDivElem = document.createElement("div")
-  // ArticleElem.append(RemoveDivElem)
-
-  // const RemoveBtnElem = document.createElement("button")
-  // RemoveBtnElem.className = "fa-solid fa-trash delete"
-  // RemoveDivElem.append(RemoveBtnElem)
-  
-  
-
-  // RemoveBtnElem.addEventListener('click' , function(){
-  //   RemoveBtnElem.parentElement.parentElement.remove()
-  // });
 
 function ShowModal() {
   ModalScreen.classList.remove("hidden")
