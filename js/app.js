@@ -66,7 +66,7 @@ function ShowNotes(){
       <article class="note" style="background-color:${note.color} " id="${note.id}">
         <p class="note-content">${note.title}</p>
         <div>
-          <button class="fa-solid fa-trash delete" onclick="deleteNote(${note.id})"></button>
+          <button class="fa-solid fa-trash delete"></button>
         </div>
       </article>
       `
@@ -80,16 +80,15 @@ function ShowNotes(){
   }
 }
 
-
-  function deleteNote(NoteID){
-    const MainNoteIndex = NotesList.findIndex(function(Note){
-      return Note.id === NoteID;
-    })
-    NotesList.splice(MainNoteIndex , 1);
-    ShowNotes();
-    SendToLocal();
-    
+function deleteNote(e) {
+  if (e.target.classList.contains("delete")) {
+    const noteId = Number(e.target.closest(".note").id)
+    NotesList = NotesList.filter(note => note.id !== noteId)
+    SendToLocal()
+    ShowNotes()
   }
+}
+
 
 function ShowModal() {
   ModalScreen.classList.remove("hidden")
@@ -118,6 +117,7 @@ ColorBoxes.forEach(function(ColorBox){
 
 
 CreateBtn.addEventListener('click' , ShowModal)
+NoteSection.addEventListener('click' , deleteNote)
 ExitBtn.addEventListener('click' , HideModal)
 CansleBtn.addEventListener('click' , HideModal)
 AddNoteBtn.addEventListener('click' , AddNote)
