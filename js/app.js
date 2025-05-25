@@ -9,7 +9,22 @@ const ColorBoxes = document.querySelectorAll('.color-box')
 const SearchBtn = document.querySelector('.search-btn')
 const SearchInput = document.querySelector(".search-value")
 
-let MainColor; // رنگ یادداشت ها
+let NotesList = []
+let MainColor; // Note Color
+
+
+function LoadPage() {
+  const LocalNotes = JSON.parse(localStorage.getItem("Notes"))
+
+  if(LocalNotes){
+    NotesList = LocalNotes
+  }
+  ShowNotes()
+}
+
+function SendToLocal(){
+  localStorage.setItem("Notes" , JSON.stringify(NotesList))
+}
 
 function Search() {
   const Notes = document.querySelectorAll(".note")
@@ -25,6 +40,80 @@ function Search() {
   })
 }
 
+function AddNote(){
+  if (NoteTxt.value.length === 0){
+    alert("فکر کنم یادت رفت یادداشت خودت رو بنویسی ;)")
+  } else {
+    const NewNote = {
+      id: Math.floor(Math.random() * 1000),
+      title: NoteTxt.value
+    }
+    NotesList.push(NewNote)
+    SendToLocal()
+    ShowNotes()
+  }
+}
+
+function ShowNotes(){
+  NoteSection.innerHTML = ""
+  
+  if (NotesList.length){
+    NoteSection.style.display = "grid"
+    NotesList.forEach(function(note){
+      NoteSection.insertAdjacentHTML("beforeend" , 
+      `
+      <article class="note" id="${note.id}">
+        <p class="note-content">${note.title}</p>
+        <div>
+          <button class="fa-solid fa-trash delete" onclick="deleteNote(${note.id})"></button>
+        </div>
+      </article>
+      `
+      )
+    NoteTxt.value = ""
+    HideModal()
+    })
+  } else{
+    NoteSection.style.display = "flex"
+    NoteSection.innerHTML = `<p class="empty">موردی ثبت نشده است</p>`
+  }
+}
+
+
+  function deleteNote(NoteID){
+    const MainNoteIndex = NotesList.findIndex(function(Note){
+      return Note.id === NoteID;
+    })
+    NotesList.splice(MainNoteIndex , 1);
+    ShowNotes();
+    SendToLocal();
+    
+  }
+
+
+  // const ArticleElem = document.createElement("article")
+  // ArticleElem.className = "note"
+  // ArticleElem.style.backgroundColor = MainColor
+  // NoteSection.append(ArticleElem)
+
+  // const NoteTxtElem = document.createElement("p")
+  // NoteTxtElem.className = "note-content"
+  // NoteTxtElem.textContent = NoteTxt.value
+  // ArticleElem.append(NoteTxtElem)
+
+  // const RemoveDivElem = document.createElement("div")
+  // ArticleElem.append(RemoveDivElem)
+
+  // const RemoveBtnElem = document.createElement("button")
+  // RemoveBtnElem.className = "fa-solid fa-trash delete"
+  // RemoveDivElem.append(RemoveBtnElem)
+  
+  
+
+  // RemoveBtnElem.addEventListener('click' , function(){
+  //   RemoveBtnElem.parentElement.parentElement.remove()
+  // });
+
 function ShowModal() {
   ModalScreen.classList.remove("hidden")
 }
@@ -38,33 +127,7 @@ function EscBtn(event) {
     HideModal()}
 }
 
-function AddNote(){
-  const ArticleElem = document.createElement("article")
-  ArticleElem.className = "note"
-  ArticleElem.style.backgroundColor = MainColor
-  NoteSection.append(ArticleElem)
-
-  const NoteTxtElem = document.createElement("p")
-  NoteTxtElem.className = "note-content"
-  NoteTxtElem.textContent = NoteTxt.value
-  ArticleElem.append(NoteTxtElem)
-
-  const RemoveDivElem = document.createElement("div")
-  ArticleElem.append(RemoveDivElem)
-
-  const RemoveBtnElem = document.createElement("button")
-  RemoveBtnElem.className = "fa-solid fa-trash delete"
-  RemoveDivElem.append(RemoveBtnElem)
-  
-  NoteTxt.value = ""
-  HideModal()
-
-  RemoveBtnElem.addEventListener('click' , function(){
-    RemoveBtnElem.parentElement.parentElement.remove()
-  });
-}
-
-// انتخاب رنگ
+// Choose Color
 ColorBoxes.forEach(function(ColorBox){
   ColorBox.addEventListener('click' , function(event){
     MainColor = event.target.dataset.color
