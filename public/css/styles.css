@@ -1286,7 +1286,7 @@ body main {
 .empty {
   border: none;
   font-size: larger;
-  color: red;
+  color: rgb(231, 62, 62);
 }
 
 .colors-title {
