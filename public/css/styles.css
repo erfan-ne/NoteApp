@@ -186,25 +186,10 @@ input:where([type="submit"]) {
   -webkit-appearance: none;
 }
 
-/*
-1. Correct the inability to style clickable types in iOS and Safari.
-2. Change font properties to `inherit` in Safari.
-*/
-
 ::-webkit-file-upload-button {
   -webkit-appearance: button;
   font: inherit;
 }
-
-/*
-Add the correct display in Chrome and Safari.
-*/
-
-
-
-/*
-Removes the default spacing and border for appropriate elements.
-*/
 
 blockquote,
 dl,
@@ -218,12 +203,6 @@ h6,
 hr,
 figure,
 p,
-
-
-
-
-
-
 ol,
 ul,
 menu {
@@ -232,24 +211,9 @@ menu {
   padding: 0;
 }
 
-/*
-Reset default styling for dialogs.
-*/
-
-
-
-/*
-Prevent resizing textareas horizontally by default.
-*/
-
 textarea {
   resize: vertical;
 }
-
-/*
-1. Reset the default placeholder opacity in Firefox. (https://github.com/tailwindlabs/tailwindcss/issues/3300)
-2. Set the default placeholder color to the user's configured gray 400 color.
-*/
 
 input::-moz-placeholder,
 textarea::-moz-placeholder {
@@ -262,29 +226,14 @@ textarea::placeholder {
   opacity: 1;
   color: #9ca3af;
 }
-
-/*
-Set the default cursor for buttons.
-*/
-
 button,
 [role="button"] {
   cursor: pointer;
 }
 
-/*
-Make sure disabled buttons don't get the pointer cursor.
-*/
-
 :disabled {
   cursor: default;
 }
-
-/*
-1. Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)
-2. Add `vertical-align: middle` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
-   This can trigger a poorly considered lint error in some tools but is included by design.
-*/
 
 img,
 svg,
@@ -293,19 +242,7 @@ canvas,
 audio,
 iframe,
 embed,
-
-
-/*
-Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
-*/
-
 img,
-
-
-/* Make elements with the HTML hidden attribute stay hidden by default */
-
-
-
 .container {
   width: 100%;
 }
@@ -850,7 +787,6 @@ body main {
     outline: 2px solid transparent;
     outline-offset: 2px;
   }
-}
 
 .container {
   padding-left: 2rem;
