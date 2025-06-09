@@ -53,4 +53,4 @@
 
 - UI inspired by modern note-taking applications
 - [Font Awesome](https://fontawesome.com) for icons
-- Built with ❤️ by [Erfan Neshati](https://github.com/erfan-ne)
+- Built with 💙 by [Erfan Neshati](https://github.com/erfan-ne)
